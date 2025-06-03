@@ -10,6 +10,7 @@ from pox.lib.packet.ipv4 import ipv4
 
 log = core.getLogger()
 
+
 class Firewall(object):
     def __init__(self, connection):
         self.connection = connection
@@ -50,7 +51,8 @@ class Firewall(object):
             if ip_pkt.protocol == ipv4.TCP_PROTOCOL:
                 # Accept and flood TCP over IPv4
                 action = of.ofp_action_output(port=of.OFPP_FLOOD)
-                match = of.ofp_match(dl_type=ethernet.IP_TYPE, nw_proto=ipv4.TCP_PROTOCOL)
+                match = of.ofp_match(
+                    dl_type=ethernet.IP_TYPE, nw_proto=ipv4.TCP_PROTOCOL)
                 self.install_rule(match, action, priority=150)
 
                 msg = of.ofp_packet_out()
@@ -72,6 +74,7 @@ class Firewall(object):
             log.warning("Ignoring incomplete packet")
             return
         self.do_firewall(packet, event.ofp)
+
 
 def launch():
     def start_switch(event):
