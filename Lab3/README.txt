@@ -1,8 +1,6 @@
 CSE150 Lab 3 – Simple Firewall using POX Controller
 ===========================================
 
-Author: Rahil Prakash
-Student ID: 2012687
 
 Files:
 ----------------
